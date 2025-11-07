@@ -209,3 +209,47 @@ html, body {
   }
 }
 
+/* ✅ versiò vertical amagada en desktop */
+.mobile-gallery {
+  display: none;
+}
+
+/* ✅ en mòbil: carrusel fora, galeria vertical activada */
+@media (max-width: 768px) {
+
+  /* amaguem el carrusel complet */
+  .marquee-wrap {
+    display: none !important;
+  }
+
+  /* activem la galeria vertical */
+  .mobile-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 100px 20px 40px 20px; /* espai per evitar solapament amb el menú */
+  }
+
+  .mobile-gallery .marquee-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mobile-gallery img,
+  .mobile-gallery video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .mobile-gallery .caption {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 14px;
+    white-space: normal;
+    max-width: 90%;
+  }
+}

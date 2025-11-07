@@ -9,6 +9,29 @@
   <script src="sketch.js"></script>
 </head>
 
+    <script>
+  // Quan carregui la pàgina, creem la galeria vertical automàticament
+  function buildMobileGallery() {
+    const track = document.getElementById("marqueeTrack");
+    const mobile = document.querySelector(".mobile-gallery");
+
+    if (!track || !mobile) return;
+
+    // Copiem cada item tal qual
+    Array.from(track.children).forEach(item => {
+      const clone = item.cloneNode(true);
+      clone.style.height = "auto";
+      mobile.appendChild(clone);
+    });
+  }
+
+  // Només construïm la galeria en pantalles petites
+  if (window.innerWidth <= 768) {
+    buildMobileGallery();
+  }
+</script>
+    
+    
 <body>
 
   <!-- HEADER -->
@@ -139,6 +162,11 @@
     
       </div>
   </div>
+
+    <!-- Versió vertical per mòbil -->
+<div class="mobile-gallery">
+  <!-- S'omplirà automàticament amb JS -->
+</div>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
     <img id="lightboxImg" src="" alt="Zoom">
