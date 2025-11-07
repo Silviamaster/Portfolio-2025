@@ -217,39 +217,72 @@ html, body {
 /* ✅ en mòbil: carrusel fora, galeria vertical activada */
 @media (max-width: 768px) {
 
-  /* amaguem el carrusel complet */
-  .marquee-wrap {
-    display: none !important;
+  /* ✅ Ajustos generals per mòbil */
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-x: hidden;      /* evitar scroll horitzontal */
+    margin: 0;
+    padding: 0;
   }
 
-  /* activem la galeria vertical */
+  /* ✅ Contenidor vertical de les imatges */
   .mobile-gallery {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding: 100px 20px 40px 20px; /* espai per evitar solapament amb el menú */
+    padding: 90px 16px 40px 16px; /* marge lateral i superior */
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .mobile-gallery .marquee-item {
     width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
+  /* ✅ Imatges i vídeos que sempre queden dins la pantalla */
   .mobile-gallery img,
   .mobile-gallery video {
     width: 100%;
     height: auto;
     max-width: 100%;
-    object-fit: contain;
+    max-height: 70vh;         /* ✅ no ocupa més del 70% de l’alçada del mòbil */
+    object-fit: contain;      
+    border-radius: 6px;       /* opcional, però ajuda visualment */
   }
 
+  /* ✅ Caption sempre contingut i llegible */
   .mobile-gallery .caption {
     text-align: center;
     margin-top: 8px;
-    font-size: 14px;
+    font-size: 13px;
     white-space: normal;
-    max-width: 90%;
+    max-width: 95%;
+  }
+
+  /* ✅ Amaguem completament la marquesina */
+  .marquee-wrap {
+    display: none !important;
+  }
+
+  /* ✅ Panell ABOUT contingut dins la pantalla */
+  .sidenav.open {
+    padding-top: 90px !important;   /* espai per no tapar el menú */
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+    max-height: 80vh;               /* ✅ no sobrepassa mai la pantalla */
+    overflow-y: scroll;             /* scroll intern si cal */
+  }
+
+  .sidenav p {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.25;
   }
 }
