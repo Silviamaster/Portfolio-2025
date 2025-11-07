@@ -12,6 +12,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   height: 100%;
+  overflow-x: hidden;
 }
 
 /* HEADER */
@@ -43,9 +44,7 @@ html, body {
   font-size: 16px;
 }
 
-#navbar a:hover {
-  text-decoration-line: underline;
-}
+#navbar a:hover { text-decoration-line: underline; }
 
 /* ABOUT */
 .sidenav {
@@ -88,7 +87,10 @@ html, body {
   z-index: 1100;
 }
 
-/* === CARRUSEL / MARQUESINA === */
+/* ===================== */
+/*   CARRUSEL DESKTOP    */
+/* ===================== */
+
 :root {
   --gap: 8px;
   --speed: 40;
@@ -114,7 +116,6 @@ html, body {
   left: 0;
 }
 
-/* Elements del carrusel */
 .marquee-item {
   flex: 0 0 auto;
   display: flex;
@@ -136,13 +137,11 @@ html, body {
   pointer-events: none;
 }
 
-/* Caption corregit */
 .caption {
   margin-top: 4px;
   text-align: center;
-  font-size: 11px;
-  white-space: normal;   /* ✅ permet salt de línia */
-  max-width: 100%;       /* ✅ no supera l’amplada de la imatge */
+  white-space: normal;
+  max-width: 100%;
   pointer-events: none;
 }
 
@@ -157,84 +156,42 @@ html, body {
   z-index: 2000;
 }
 
-.lightbox.open {
-  display: flex;
-}
+.lightbox.open { display: flex; }
 
 .lightbox img {
   max-width: 95vw;
   max-height: 95vh;
 }
 
-/* ✅ Millora del carrusel per mòbil */
-@media (max-width: 768px) {
 
-  .marquee-wrap {
-    height: 22vh;         /* més alt, més natural */
-    bottom: 0;
-  }
+/* ========================== */
+/*  GALERIA VERTICAL MÒBIL    */
+/* ========================== */
 
-  .marquee-item {
-    height: 100% !important;  /* tots els items ocupen el mateix alt */
-    align-items: center;      /* centre per limitar el caption a l'amplada real */
-  }
-
-  .marquee-item img,
-  .marquee-item video {
-    height: 100%;
-    width: auto;
-    object-fit: contain;      /* ✅ evita tallar la imatge en mòbil */
-  }
-
-  .caption {
-    font-size: 12px;
-    max-width: 90%;           /* ✅ que no sobresurti mai */
-    text-align: center;
-    white-space: normal;
-  }
-}
-
-
-/* Evitar scroll de pàgina en desktop */
-@media (min-width: 769px) {
-  html, body {
-    overflow: hidden;
-  }
-}
-
-/* ✅ Evitar que el panell ABOUT es posi sota el menú en mòbil */
-@media (max-width: 768px) {
-  .sidenav.open {
-    padding-top: 100px !important; /* abans: 50px — ara deixa espai pel menú */
-  }
-}
-
-/* ✅ versiò vertical amagada en desktop */
 .mobile-gallery {
   display: none;
 }
 
-/* ✅ en mòbil: carrusel fora, galeria vertical activada */
-@media (max-width: 768px) {
-
-  /* ✅ Ajustos generals per mòbil */
 @media (max-width: 768px) {
 
   html, body {
-    overflow-x: hidden;      /* evitar scroll horitzontal */
-    margin: 0;
-    padding: 0;
+    overflow-x: hidden;
+    height: auto;
   }
 
-  /* ✅ Contenidor vertical de les imatges */
+  /* ✅ AMAGAR EL CARRUSEL */
+  .marquee-wrap {
+    display: none !important;
+  }
+
+  /* ✅ ACTIVAR LA GALERIA VERTICAL */
   .mobile-gallery {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding: 90px 16px 40px 16px; /* marge lateral i superior */
+    padding: 90px 16px 40px 16px;
     box-sizing: border-box;
     max-width: 100%;
-    overflow-x: hidden;
   }
 
   .mobile-gallery .marquee-item {
@@ -245,44 +202,45 @@ html, body {
     align-items: center;
   }
 
-  /* ✅ Imatges i vídeos que sempre queden dins la pantalla */
+  /* ✅ IMATGES I VÍDEOS 100% CONTINGUTS */
   .mobile-gallery img,
   .mobile-gallery video {
     width: 100%;
     height: auto;
+    max-height: 70vh;
+    object-fit: contain;
     max-width: 100%;
-    max-height: 70vh;         /* ✅ no ocupa més del 70% de l’alçada del mòbil */
-    object-fit: contain;      
-    border-radius: 6px;       /* opcional, però ajuda visualment */
   }
 
-  /* ✅ Caption sempre contingut i llegible */
   .mobile-gallery .caption {
     text-align: center;
     margin-top: 8px;
     font-size: 13px;
     white-space: normal;
-    max-width: 95%;
+    max-width: 90%;
   }
 
-  /* ✅ Amaguem completament la marquesina */
-  .marquee-wrap {
-    display: none !important;
-  }
-
-  /* ✅ Panell ABOUT contingut dins la pantalla */
+  /* ✅ ABOUT RESPONSIVE I CONTINGUT */
   .sidenav.open {
-    padding-top: 90px !important;   /* espai per no tapar el menú */
+    padding-top: 90px !important;
     padding-left: 16px;
     padding-right: 16px;
+    max-height: 80vh;
+    overflow-y: scroll;
     box-sizing: border-box;
-    max-height: 80vh;               /* ✅ no sobrepassa mai la pantalla */
-    overflow-y: scroll;             /* scroll intern si cal */
   }
 
   .sidenav p {
     max-width: 100%;
     font-size: 14px;
     line-height: 1.25;
+  }
+}
+
+
+/* EVITAR SCROLL EN DESKTOP */
+@media (min-width: 769px) {
+  html, body {
+    overflow: hidden;
   }
 }
