@@ -140,6 +140,7 @@ html, body {
 .caption {
   margin-top: 4px;
   text-align: center;
+  font-size: 12px;
   white-space: normal;
   max-width: 100%;
   pointer-events: none;
@@ -215,7 +216,7 @@ html, body {
   .mobile-gallery .caption {
     text-align: center;
     margin-top: 8px;
-    font-size: 13px;
+    font-size: 10px;
     white-space: normal;
     max-width: 90%;
   }
@@ -232,7 +233,7 @@ html, body {
 
   .sidenav p {
     max-width: 100%;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.25;
   }
 }
