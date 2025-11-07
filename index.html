@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sílvia de Castro - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script src="p5.js"></script>
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div id="header"></div>
+
+  <!-- MENÚ -->
+  <div id="navbar">
+    <a href="#about" onclick="openNav()">About</a>
+  </div>
+
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("navbar").style.top = "0";
+      } else {
+        document.getElementById("navbar").style.top = "-50px";
+      }
+      prevScrollpos = currentScrollPos;
+    };
+  </script>
+
+  <!-- ABOUT desplegable -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <p id="about"><b>Sílvia de Castro, 1993</b>
+      <br>sdecastro11@gmail.com
+      <br><br>Habilidades:
+      <br>Animación y 3D ⸻ After Effects, Cinema 4D, Sketchup
+      <br>Diseño Gráfico ⸻ Photoshop, Illustrator, Indesign
+      <br>Diseño Web ⸻ Figma
+      <br><br>Experiencia:
+      <br>2021/act. ⸻ Diseñadora gráfica en NOMON
+      <br>2025 ⸻ Participación en la Comissión Evaluadora de TFG, ESDAPC
+      <br>2020/2021 ⸻ Diseñadora gráfica en prácticas en Run
+      <br>2017/2019 ⸻ Fotogrametría con drones y técnica de calidad en SITEP
+      <br><br>Formación:
+      <br>2024 ⸻ Curso de Midjourney
+      <br>2019/2020 ⸻ Máster en Diseño Gráfico, ELISAVA
+      <br>2018 ⸻ Curso de Serigrafía, Centre cívic Pati Llimona
+      <br>2018 ⸻ Curso Técnico Superior en Diseño Gráfico y Maquetación, Seeway
+      <br>2015/2016 ⸻ Máster en Teledetección y Sistemas de Información Geográfica, UAB
+      <br>2011/2015 ⸻ Grado en Ciencias Ambientales, UB
+      <br><br>Premios:
+      <br>ADG Laus Estudiantes 2021 ⸻ Proyecto inplant (Bronce)
+    </p>
+  </div>
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").classList.add("open");
+    }
+    function closeNav() {
+      document.getElementById("mySidenav").classList.remove("open");
+    }
+  </script>
+
+  <!-- CARRUSEL / MARQUESINA -->
+  <div class="marquee-wrap" id="marqueeWrap">
+    <div class="marquee-track" id="marqueeTrack">
+      
+        <div class="marquee-item" data-h="50vh">
+                <img src="images/drymelt.gif">
+                <div class="caption">Branding and packaging for DryMelt (UIC). Made at NOMON.
+                </div>
+         </div>
+        
+        <div class="marquee-item" data-h="55vh">
+            
+                <video autoplay muted loop playsinline>
+                <source src="images/Athos_posts.MP4" type="video/mp4">
+                </video>
+                <div class="caption">Design and animation of Instagram posts for Athos. Made at NOMON.</div>
+            
+        </div>
+
+        <div class="marquee-item" data-h="30vh">
+            
+                <video autoplay muted loop playsinline>
+                <source src="images/BSDW.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Animation for BSDW. Made at NOMON.</div>
+            
+        </div>
+      
+        <div class="marquee-item" data-h="50vh">
+            
+                <img src="images/enhormigon01.gif" alt="enhormigon01">
+                <div class="caption">Design of EN HORMIGÓN magazine. For ETSAM (Escuela Técnica Superior de Arquitectura de Madrid).
+                </div>
+            
+        </div>
+    
+        <div class="marquee-item" data-h="80vh">
+            
+                <img src="images/enhormigon02.gif" alt="enhormigon02">
+                <div class="caption">Design of EN HORMIGÓN magazine. For ETSAM (Escuela Técnica Superior de Arquitectura de Madrid).
+                </div>
+           
+        </div>
+     
+        <div class="marquee-item" data-h="40vh">
+             
+                <video autoplay muted loop playsinline>
+                <source src="images/COSMIC_Branding_Final.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Animation for COSMIC. Made at NOMON.</div>
+            
+        </div>
+     
+        <div class="marquee-item" data-h="35vh">
+            
+                <img src="images/COSMIC_blanc.gif" alt="COSMIC blanc">
+                <div class="caption">COSMIC Booth Design. Made at NOMON.
+                </div>
+            
+        </div>
+     
+        <div class="marquee-item" data-h="35vh">
+            
+                <video autoplay muted loop playsinline>
+                <source src="images/MESCLADIS_branding.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Animation for Mescladís. Made at NOMON.</div>
+            
+        </div>
+    
+      </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <img id="lightboxImg" src="" alt="Zoom">
+  </div>
+
+  <!-- JS del carrusel -->
+<script>
+(function () {
+  const wrap = document.getElementById('marqueeWrap');
+  const track = document.getElementById('marqueeTrack');
+  let speed = Number(getComputedStyle(document.documentElement).getPropertyValue('--speed')) || 25;
+
+  let raf = null, lastTime = null, offset = 0;
+  let isDragging = false, startX = 0, dragStartOffset = 0;
+  let clone = null;
+
+  function applyHeights() {
+    const wrapMaxPx = window.innerHeight * 0.8;
+    Array.from(track.children).forEach(it => {
+      const h = it.dataset.h;
+      if (!h) return;
+      let px;
+      if (/vh$/.test(h)) px = window.innerHeight * parseFloat(h) / 100;
+      else if (/px$/.test(h)) px = parseFloat(h);
+      else px = parseFloat(h);
+      it.style.height = Math.min(px, wrapMaxPx) + 'px';
+    });
+  }
+
+  function createClone() {
+    if (clone && clone.parentNode) clone.remove();
+
+    clone = track.cloneNode(true);
+    clone.removeAttribute("id");
+
+    clone.style.position = "absolute";
+    clone.style.top = "0";
+    clone.style.left = track.scrollWidth + "px";   // ✅ POSICIÓ REAL DEL LOOP
+    clone.style.display = "flex";
+    clone.style.gap = getComputedStyle(track).gap;
+
+    track.parentNode.appendChild(clone);
+  }
+
+  function repositionClone() {
+    const w = track.scrollWidth;
+    if (clone) clone.style.left = w + "px";  // ✅ NOMÉS left, cap transform
+  }
+
+  function update(dt) {
+    if (!isDragging) offset += speed * dt / 1000;
+
+    const w = track.scrollWidth;
+    offset = ((offset % w) + w) % w;
+
+    track.style.transform = `translateX(${-offset}px)`;
+    clone.style.transform = `translateX(${-offset}px)`; // ✅ es mou exactament igual, sense desajust
+    clone.style.left = w + "px";  // ✅ assegura posició base estable
+  }
+
+  function loop(ts) {
+    if (!lastTime) lastTime = ts;
+    const dt = ts - lastTime;
+    lastTime = ts;
+    update(dt);
+    raf = requestAnimationFrame(loop);
+  }
+
+  function start() {
+    cancelAnimationFrame(raf);
+    lastTime = null;
+    raf = requestAnimationFrame(loop);
+  }
+
+  // ===== DRAG =====
+  function onDragStart(x) {
+    isDragging = true;
+    startX = x;
+    dragStartOffset = offset;
+  }
+  function onDragMove(x) {
+    if (!isDragging) return;
+    const w = track.scrollWidth;
+    const dx = x - startX;
+    offset = ((dragStartOffset - dx) % w + w) % w;
+  }
+  function onDragEnd() { isDragging = false; }
+
+  wrap.addEventListener('mousedown', e => onDragStart(e.clientX));
+  wrap.addEventListener('mousemove', e => onDragMove(e.clientX));
+  wrap.addEventListener('mouseup', onDragEnd);
+  wrap.addEventListener('mouseleave', onDragEnd);
+  wrap.addEventListener('touchstart', e => onDragStart(e.touches[0].clientX));
+  wrap.addEventListener('touchmove', e => onDragMove(e.touches[0].clientX));
+  wrap.addEventListener('touchend', onDragEnd);
+
+  function init() {
+    applyHeights();
+    createClone();
+    start();
+  }
+
+  init();
+
+  // recalcular després que carreguin vídeos i GIFs
+  setTimeout(() => {
+    applyHeights();
+    repositionClone();
+  }, 800);
+
+  window.addEventListener('resize', () => {
+    applyHeights();
+    repositionClone();
+  });
+
+})();
+</script>
+
+
+</body>
+</html>

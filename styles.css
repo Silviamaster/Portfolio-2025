@@ -1,0 +1,181 @@
+html, body {
+  margin: 0;
+  background-color:#ffffff;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 0em;
+  line-height: 1.0;
+  font-weight: 300;
+  text-transform: none;
+  font-style: normal;
+  text-indent: 0em;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  height: 100%;
+}
+
+/* HEADER */
+#header {
+  padding: 50px 15px 0 15px;
+  font-size: 26px;
+  font-style: italic;
+  color:#292929; 
+}
+
+/* MENU */
+#navbar {
+  background-color: rgba(255, 255, 255, 0);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: max-content;
+  transition: top 0.4s;
+  z-index: 9999;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #292929;
+  text-align: center;
+  padding: 45px 45px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+#navbar a:hover {
+  text-decoration-line: underline;
+}
+
+/* ABOUT */
+.sidenav {
+  height: 0;
+  width: 100vw;
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  left: 0;
+  background-color: #f7f7f7;
+  overflow: hidden;
+  transition: height 0.5s ease;
+  padding: 0 20px;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.sidenav.open {
+  height: 80vh;
+  transform: translateY(0);
+  opacity: 1;
+  overflow-y: auto;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.sidenav a, p {
+  padding: 8px 8px 8px 20px;
+  text-decoration: none;
+  color: #292929;
+  display: block;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* === CARRUSEL / MARQUESINA === */
+:root {
+  --gap: 8px;
+  --speed: 40;
+}
+
+.marquee-wrap {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  max-height: 80vh;
+  overflow: visible;
+  z-index: 500;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap);
+  will-change: transform;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* Elements del carrusel */
+.marquee-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.marquee-item img,
+.marquee-item video {
+  height: calc(100% - 20px);
+  width: auto;
+  object-fit: contain;
+  display: block;
+  max-width: 100%;
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+/* Caption corregit */
+.caption {
+  margin-top: 4px;
+  text-align: center;
+  font-size: 11px;
+  white-space: normal;   /* ✅ permet salt de línia */
+  max-width: 100%;       /* ✅ no supera l’amplada de la imatge */
+  pointer-events: none;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 95vw;
+  max-height: 95vh;
+}
+
+/* 📱 Responsivitat */
+@media (max-width: 768px) {
+  .marquee-wrap {
+    height: 18vh;
+  }
+}
+
+/* Evitar scroll de pàgina en desktop */
+@media (min-width: 769px) {
+  html, body {
+    overflow: hidden;
+  }
+}
