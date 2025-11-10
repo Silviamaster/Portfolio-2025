@@ -70,17 +70,27 @@
   <!-- ========================= -->
   <!--   CARRUSEL (DESKTOP)      -->
   <!-- ========================= -->
+    
+    <script>
+  // Si és mòbil, no inicialitzem el carrusel
+  const isMobile = window.innerWidth <= 768;
+</script>
+
+    
+    
   <div class="marquee-wrap" id="marqueeWrap">
     <div class="marquee-track" id="marqueeTrack">
 
       <div class="marquee-item" data-h="50vh">
-        <img src="images/drymelt.gif">
+        <video autoplay muted loop playsinline>
+          <source src="images/drymelt.mp4" type="video/mp4">
+        </video>
         <div class="caption">Branding and packaging for DryMelt (UIC). Made at NOMON.</div>
       </div>
 
-      <div class="marquee-item" data-h="65vh">
+      <div class="marquee-item" data-h="40vh">
         <video autoplay muted loop playsinline>
-          <source src="images/Athos_posts.MP4" type="video/mp4">
+          <source src="images/Athos_posts.mp4" type="video/mp4">
         </video>
         <div class="caption">Design and animation of Instagram posts for Athos. Made at NOMON.</div>
       </div>
@@ -93,12 +103,16 @@
       </div>
 
       <div class="marquee-item" data-h="50vh">
-        <img src="images/enhormigon01.gif" alt="enhormigon01">
+        <video autoplay muted loop playsinline>
+          <source src="images/enhormigon01.mp4" type="video/mp4">
+        </video>
         <div class="caption">Design of EN HORMIGÓN magazine. For ETSAM.</div>
       </div>
 
       <div class="marquee-item" data-h="80vh">
-        <img src="images/enhormigon02.gif" alt="enhormigon02">
+        <video autoplay muted loop playsinline>
+          <source src="images/enhormigon02.mp4" type="video/mp4">
+        </video>
         <div class="caption">Design of EN HORMIGÓN magazine. For ETSAM.</div>
       </div>
 
@@ -110,7 +124,9 @@
       </div>
 
       <div class="marquee-item" data-h="40vh">
-        <img src="images/COSMIC_blanc.gif" alt="COSMIC blanc">
+        <video autoplay muted loop playsinline>
+          <source src="images/COSMIC_blanc.mp4" type="video/mp4">
+        </video>
         <div class="caption">COSMIC Booth Design. Made at NOMON.</div>
       </div>
 
@@ -121,6 +137,22 @@
         <div class="caption">Animation for Mescladís. Made at NOMON.</div>
       </div>
 
+      <div class="marquee-item" data-h="30vh">
+        <video autoplay muted loop playsinline>
+          <source src="images/inplant01.mp4" type="video/mp4">
+        </video>
+        <div class="caption">Master's Degree Project. ELISAVA.</div>
+      </div>
+        
+      <div class="marquee-item" data-h="40vh">
+        <video autoplay muted loop playsinline>
+          <source src="images/Athos_story.mp4" type="video/mp4">
+        </video>
+        <div class="caption">Animation of Instagram posts for Athos. Made at NOMON.</div>
+      </div>
+        
+      
+        
     </div>
   </div>
 
@@ -229,7 +261,8 @@
         start();
       }
 
-      init();
+      if (!isMobile) init();
+
 
       // Reajustar
       setTimeout(() => {
