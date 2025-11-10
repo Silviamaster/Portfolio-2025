@@ -71,7 +71,9 @@ html, body {
   padding-bottom: 30px;
 }
 
-.sidenav a, p {
+.sidenav a, 
+.sidenav p {
+  font-weight: 300;
   padding: 8px 8px 8px 20px;
   text-decoration: none;
   color: #292929;
