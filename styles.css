@@ -263,3 +263,26 @@ html, body {
   }
 }
 
+/* ✅ ESTILOS ESPECÍFICOS PARA TABLETS / IPAD */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .marquee-wrap {
+    bottom: 20px;
+    max-height: 55vh; /* <— evita que las imágenes queden demasiado bajas */
+  }
+
+  .marquee-track {
+    gap: 4px; /* <— reduce el espacio entre items */
+  }
+
+  .marquee-item img,
+  .marquee-item video {
+    height: 45vh; /* <— evita que ocupen demasiado y generen huecos */
+  }
+
+  .caption {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+}
+
