@@ -1,6 +1,6 @@
 html, body {
   margin: 0;
-  background-color: #ffffff;
+  background-color:#ffffff;
   font-family: 'Times New Roman', Times, serif;
   letter-spacing: 0em;
   line-height: 1.0;
@@ -20,7 +20,7 @@ html, body {
   padding: 50px 15px 0 15px;
   font-size: 26px;
   font-style: italic;
-  color: #292929; 
+  color:#292929; 
 }
 
 /* MENU */
@@ -167,22 +167,23 @@ html, body {
 }
 
 .video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  overflow: hidden;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
 }
 
 .video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
+
 /* ========================== */
-/*  GALERIA VERTICAL MÓVIL    */
+/*  GALERIA VERTICAL MÒBIL    */
 /* ========================== */
 
 .mobile-gallery {
@@ -196,10 +197,12 @@ html, body {
     height: auto;
   }
 
+  /* ✅ AMAGAR EL CARRUSEL */
   .marquee-wrap {
     display: none !important;
   }
 
+  /* ✅ ACTIVAR LA GALERIA VERTICAL */
   .mobile-gallery {
     display: flex;
     flex-direction: column;
@@ -217,6 +220,7 @@ html, body {
     align-items: center;
   }
 
+  /* ✅ IMATGES I VÍDEOS 100% CONTINGUTS */
   .mobile-gallery img,
   .mobile-gallery video {
     width: 100%;
@@ -234,6 +238,7 @@ html, body {
     max-width: 90%;
   }
 
+  /* ✅ ABOUT RESPONSIVE I CONTINGUT */
   .sidenav.open {
     padding-top: 90px !important;
     padding-left: 16px;
@@ -250,44 +255,46 @@ html, body {
   }
 }
 
-/* ========================== */
-/* TABLETS / IPAD UNIVERSAL   */
-/* ========================== */
 
-@media (min-width: 769px) and (max-width: 1280px) {
-
-  /* Carrusel compacto */
-  .marquee-wrap {
-    max-height: 55vh;
-    bottom: 15px;
-  }
-
-  .marquee-track {
-    gap: 5px;
-  }
-
-  .marquee-item img,
-  .marquee-item video {
-    height: 48vh;
-    width: auto;
-    object-fit: contain;
-  }
-
-  .caption {
-    font-size: 12px;
-    margin-top: 3px;
-  }
-
-  /* Evitar scroll innecesario */
+/* EVITAR SCROLL EN DESKTOP */
+@media (min-width: 769px) {
   html, body {
     overflow: hidden;
   }
 }
 
 /* ========================== */
-/* EVITAR SCROLL EN DESKTOP   */
+/* iPad Air 4 — Landscape     */
+/* viewport ~1180px x 696px  */
 /* ========================== */
-@media (min-width: 1281px) {
+@media (min-width: 1024px) and (max-width: 1280px) and (orientation: landscape) {
+
+  /* Contenedor del carrusel */
+  .marquee-wrap {
+    bottom: 15px;         /* un poco más cerca del borde inferior */
+    max-height: 55vh;     /* ajusta la altura total del carrusel */
+  }
+
+  /* Track de items */
+  .marquee-track {
+    gap: 5px !important;  /* reduce espacio entre elementos */
+  }
+
+  /* Items (imágenes y videos) */
+  .marquee-item img,
+  .marquee-item video {
+    height: 48vh !important;  /* altura proporcional al viewport */
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Caption */
+  .caption {
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
+  /* Mantener scroll correcto */
   html, body {
     overflow: hidden;
   }
