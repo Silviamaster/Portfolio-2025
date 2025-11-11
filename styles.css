@@ -263,35 +263,39 @@ html, body {
   }
 }
 
-/* ✅ iPad Air 4 — Landscape (1180 × 820 aprox.) */
-@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+/* ========================== */
+/* iPad Air 4 — Landscape     */
+/* viewport ~1180px x 696px  */
+/* ========================== */
+@media (min-width: 1024px) and (max-width: 1280px) and (orientation: landscape) {
 
-  /* Ajustar el carrusel */
+  /* Contenedor del carrusel */
   .marquee-wrap {
-    bottom: 20px;        /* separamos un poco del borde */
-    max-height: 60vh;    /* evita el exceso de espacio vertical */
+    bottom: 15px;         /* un poco más cerca del borde inferior */
+    max-height: 55vh;     /* ajusta la altura total del carrusel */
   }
 
+  /* Track de items */
   .marquee-track {
-    gap: 6px !important; /* reduce el hueco entre elementos */
+    gap: 5px !important;  /* reduce espacio entre elementos */
   }
 
+  /* Items (imágenes y videos) */
   .marquee-item img,
   .marquee-item video {
-    height: 50vh !important;  /* ajuste ideal para iPad Air landscape */
+    height: 48vh !important;  /* altura proporcional al viewport */
     width: auto;
     object-fit: contain;
   }
 
+  /* Caption */
   .caption {
     font-size: 12px;
-    margin-top: 4px;
+    margin-top: 3px;
   }
 
-  /* Evita que el body fuerce overflow raro */
+  /* Mantener scroll correcto */
   html, body {
-    overflow: hidden;  /* mantiene el comportamiento desktop */
+    overflow: hidden;
   }
 }
-
-
