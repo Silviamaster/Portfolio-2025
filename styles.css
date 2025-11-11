@@ -117,6 +117,8 @@ html, body {
   position: absolute;
   bottom: 0;
   left: 0;
+    
+    touch-action: pan-x pan-y; /* touch táctil iPad */
 }
 
 .marquee-item {
@@ -126,6 +128,8 @@ html, body {
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .marquee-item img,
@@ -264,4 +268,19 @@ html, body {
   }
 }
 
+/* ===================== */
+/*   CARRUSEL TOUCH IPAD  */
+/* ===================== */
+.marquee-wrap {
+  -webkit-overflow-scrolling: touch; /* suaviza scroll táctil en iOS */
+}
+
+.marquee-track {
+  touch-action: pan-x pan-y; /* permite touch completo en iPad */
+}
+
+.marquee-item img,
+.marquee-item video {
+  pointer-events: auto; /* importante: toda la imagen/video responde al touch */
+}
 
