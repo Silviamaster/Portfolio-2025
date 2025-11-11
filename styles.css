@@ -137,7 +137,7 @@ html, body {
   max-width: 100%;
   -webkit-user-drag: none;
   user-drag: none;
-  pointer-events: none;
+  
 }
 
 .caption {
