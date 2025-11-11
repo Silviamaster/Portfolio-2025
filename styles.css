@@ -272,7 +272,7 @@ html, body {
   /* Contenedor del carrusel */
   .marquee-wrap {
     bottom: 15px;         /* un poco más cerca del borde inferior */
-    max-height: 55vh;     /* ajusta la altura total del carrusel */
+    max-height: 80vh;     /* ajusta la altura total del carrusel */
   }
 
   /* Track de items */
