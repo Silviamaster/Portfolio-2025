@@ -32,14 +32,15 @@ html, body {
   height: max-content;
   transition: top 0.4s;
   z-index: 9999;
+    padding: 40px 40px;
 }
 
 #navbar a {
   float: left;
-  display: block;
+  display: inline-block;
   color: #292929;
   text-align: center;
-  padding: 45px 45px;
+  padding: 0px 10px;
   text-decoration: none;
   font-size: 16px;
 }
@@ -63,7 +64,7 @@ html, body {
 }
 
 .sidenav.open {
-  height: 80vh;
+  height: 60vh;
   transform: translateY(0);
   opacity: 1;
   overflow-y: auto;
@@ -82,7 +83,7 @@ html, body {
 
 .sidenav .closebtn {
   position: absolute;
-  top: 10px;
+  top: 60px;
   left: 20px;
   font-size: 30px;
   cursor: pointer;
