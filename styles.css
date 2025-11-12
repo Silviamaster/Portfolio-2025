@@ -275,6 +275,10 @@ html, body {
   -webkit-overflow-scrolling: touch; /* suaviza scroll táctil en iOS */
 }
 
+.marquee-wrap {
+  touch-action: pan-y; /* permet scroll vertical */
+}
+
 .marquee-track {
   touch-action: pan-x pan-y; /* permite touch completo en iPad */
 }
@@ -286,27 +290,41 @@ html, body {
 
 
 /* =============================== */
-/* FIX CARRUSEL SAFARI (espaciado) */
+/* FIX ESPAI BLANC SAFARI (manté bottom align) */
 /* =============================== */
 @supports (-webkit-touch-callout: none) {
   .marquee-track {
-    gap: 0 !important; /* elimina el gap defectuoso */
+    gap: 0 !important; /* Safari té un bug amb gap + transform */
   }
 
   .marquee-item {
-    margin-right: var(--gap); /* aplica el espacio de forma idéntica a Chrome */
+    margin-right: var(--gap); /* substitueix el gap manualment */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* assegura que el vídeo queda abaix */
   }
 
   .marquee-item:last-child {
-    margin-right: 0; /* sin margen en el último */
+    margin-right: 0;
   }
 
-  /* Previene saltos por redondeo subpixel */
   .marquee-item video {
     display: block;
     vertical-align: bottom;
     transform: translateZ(0);
     backface-visibility: hidden;
+  }
+}
+
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    /* ... aquí el fix ... */
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  html, body {
+    overflow-y: auto !important;
   }
 }
 
