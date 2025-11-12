@@ -284,3 +284,29 @@ html, body {
   pointer-events: auto; /* importante: toda la imagen/video responde al touch */
 }
 
+
+/* =============================== */
+/* FIX CARRUSEL SAFARI (espaciado) */
+/* =============================== */
+@supports (-webkit-touch-callout: none) {
+  .marquee-track {
+    gap: 0 !important; /* elimina el gap defectuoso */
+  }
+
+  .marquee-item {
+    margin-right: var(--gap); /* aplica el espacio de forma idéntica a Chrome */
+  }
+
+  .marquee-item:last-child {
+    margin-right: 0; /* sin margen en el último */
+  }
+
+  /* Previene saltos por redondeo subpixel */
+  .marquee-item video {
+    display: block;
+    vertical-align: bottom;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
