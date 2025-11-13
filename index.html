@@ -201,6 +201,9 @@
                 startX = 0,
                 dragStartOffset = 0;
             let clone = null;
+            
+            // Detectar Safari para aplicar la corrección del gap
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
             function applyHeights() {
                 const wrapMaxPx = window.innerHeight * 0.8;
@@ -216,23 +219,29 @@
             }
 
             function createClone() {
-                if (clone && clone.parentNode) clone.remove();
+                if (clone && clone.parentNode) {
+                    clone.remove();
+                }
 
                 clone = track.cloneNode(true);
                 clone.removeAttribute("id");
 
                 clone.style.position = "absolute";
                 clone.style.top = "0";
-                clone.style.left = track.scrollWidth + "px";
                 clone.style.display = "flex";
                 clone.style.gap = getComputedStyle(track).gap;
+
+                repositionClone(); // Llama a la función que ahora contiene la lógica de posicionamiento
 
                 track.parentNode.appendChild(clone);
             }
 
             function repositionClone() {
-                const w = track.scrollWidth;
-                if (clone) clone.style.left = w + "px";
+                if (!clone) return;
+                let w = track.scrollWidth;
+                // Si es Safari y estamos usando el fix de margin, añadimos el gap manualmente al cálculo del ancho.
+                if (isSafari) w += parseInt(getComputedStyle(document.documentElement).getPropertyValue('--gap'));
+                clone.style.left = w + "px";
             }
 
             function update(dt) {
@@ -243,7 +252,7 @@
 
                 track.style.transform = `translateX(${-offset}px)`;
                 clone.style.transform = `translateX(${-offset}px)`;
-                clone.style.left = w + "px";
+                repositionClone(); // Usamos la función para asegurar que la posición del clon es siempre correcta
             }
 
             function loop(ts) {

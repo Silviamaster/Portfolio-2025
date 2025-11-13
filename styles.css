@@ -321,12 +321,16 @@ html {
 /* =============================== */
 @supports (-webkit-touch-callout: none) {
   .marquee-track {
-    gap: 0 !important;
+    /* Safari tiene un bug con gap + transform. Aseguramos que el gap sea 0. */
+    gap: 0; /* Resetear gap */
+    column-gap: 0; /* Resetear column-gap */
+    row-gap: 0; /* Resetear row-gap */
+    gap: 0 !important; /* Mantenemos !important como una anulación final */
     /* Safari té un bug amb gap + transform */
   }
 
   .marquee-item {
-    margin-right: var(--gap);
+    margin-right: 8px; /* Sustituimos var(--gap) por un valor fijo para asegurar el espaciado */
     /* substitueix el gap manualment */
     display: flex;
     flex-direction: column;
