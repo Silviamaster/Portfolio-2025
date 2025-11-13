@@ -76,20 +76,36 @@ html {
 
 .sidenav a,
 .sidenav p {
-  font-weight: 300;
-  padding: 8px 8px 8px 20px;
   text-decoration: none;
   color: #292929;
   display: block;
+  padding: 0 8px 0 20px;
+}
+
+.sidenav h3 {
+  font-size: 1em;
+  font-weight: normal;
+  margin: 20px 0 0 20px;
+  padding: 0;
+}
+
+.sidenav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.sidenav li {
+  padding: 0px 0px 0px 20px;
 }
 
 .sidenav .closebtn {
   position: absolute;
-  top: 60px;
+  top: 20px;
   left: 20px;
   font-size: 30px;
   cursor: pointer;
-  z-index: 1100;
+  z-index: 1;
 }
 
 /* ===================== */
@@ -248,7 +264,7 @@ html {
 
   /* ✅ ABOUT RESPONSIVE I CONTINGUT */
   .sidenav.open {
-    padding-top: 90px !important;
+    padding-top: 90px;
     padding-left: 16px;
     padding-right: 16px;
     max-height: 80vh;
@@ -256,10 +272,15 @@ html {
     box-sizing: border-box;
   }
 
-  .sidenav p {
+  .sidenav p,
+  .sidenav li {
     max-width: 100%;
     font-size: 12px;
     line-height: 1.25;
+  }
+
+  .sidenav h3 {
+    font-size: 12px;
   }
 }
 

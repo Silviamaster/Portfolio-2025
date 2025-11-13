@@ -47,29 +47,39 @@
 
     <!-- ABOUT desplegable -->
     <div id="mySidenav" class="sidenav">
-        <p><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <p id="about">
-            Sílvia de Castro, 1993
-            <br>sdecastro11@gmail.com
-            <br><br>Habilidades:
-            <br>Animación y 3D ⸻ After Effects, Cinema 4D, Sketchup
-            <br>Diseño Gáfico ⸻ Photoshop, Illustrator, Indesign
-            <br>Diseño Web ⸻ Figma
-            <br><br>Experiencia:
-            <br>2021/act. ⸻ Diseñadora gráfica en NOMON
-            <br>2025 ⸻ Participación en la Comissión Evaluadora de TFG, ESDAPC
-            <br>2020/2021 ⸻ Diseñadora gráfica en prácticas en Run
-            <br>2017/2019 ⸻ Fotogrametría con drones y técnico de calidad en SITEP
-            <br><br>Formación:
-            <br>2024 ⸻ Curso de Midjourney
-            <br>2019/2020 ⸻ Máster en Diseño Gráfico, ELISAVA
-            <br>2018 ⸻ Curso de Serigrafía, Centre cívic Pati Llimona
-            <br>2018 ⸻ Curso Técnico Superior en Diseño Gráfico y Maquetación, Seeway
-            <br>2015/2016 ⸻ Máster en Teledetección y Sistemas de Información Geográfica, UAB
-            <br>2011/2015 ⸻ Grado en Ciencias Ambientales, UB
-            <br><br>Premios:
-            <br>ADG Laus Estudiantes 2021 ⸻ Proyecto inplant (Bronce)
-        </p>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div id="about">
+            <h3>Sílvia de Castro, 1993
+            <br>sdecastro11@gmail.com</h3>
+            
+            <h3>Habilidades</h3>
+            <ul>
+                <li>Animación y 3D ⸻ After Effects, Cinema 4D, Sketchup</li>
+                <li>Diseño Gáfico ⸻ Photoshop, Illustrator, Indesign</li>
+                <li>Diseño Web ⸻ Figma</li>
+            </ul>
+
+            <h3>Experiencia</h3>
+            <ul>
+                <li>2021/act. ⸻ Diseñadora gráfica en NOMON</li>
+                <li>2025 ⸻ Participación en la Comissión Evaluadora de TFG, ESDAPC</li>
+                <li>2020/2021 ⸻ Diseñadora gráfica en prácticas en Run</li>
+                <li>2017/2019 ⸻ Fotogrametría con drones y técnico de calidad en SITEP</li>
+            </ul>
+
+            <h3>Formación</h3>
+            <ul>
+                <li>2024 ⸻ Curso de Midjourney</li>
+                <li>2019/2020 ⸻ Máster en Diseño Gráfico, ELISAVA</li>
+                <li>2018 ⸻ Curso de Serigrafía, Centre cívic Pati Llimona</li>
+                <li>2018 ⸻ Curso Técnico Superior en Diseño Gráfico y Maquetación, Seeway</li>
+                <li>2015/2016 ⸻ Máster en Teledetección y Sistemas de Información Geográfica, UAB</li>
+                <li>2011/2015 ⸻ Grado en Ciencias Ambientales, UB</li>
+            </ul>
+
+            <h3>Premios
+            <br>ADG Laus Estudiantes 2021 ⸻ Proyecto inplant (Bronce)</h3>
+        </div>
     </div>
 
     <script>
@@ -291,11 +301,6 @@
                 createClone();
                 start();
             }
-
-            window.addEventListener('load', () => {
-                applyHeights();
-                repositionClone();
-            });
 
 
             if (!isMobile) init();
