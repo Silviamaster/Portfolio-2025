@@ -108,70 +108,80 @@
         <div class="marquee-track" id="marqueeTrack">
 
             <div class="marquee-item" data-h="50vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/enhormigon01.jpg">
+                    <source src="images/enhormigon01.webm" type="video/webm">
                     <source src="images/enhormigon01.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Design of EN HORMIGÓN magazine. For ETSAM.</div>
             </div>
 
             <div class="marquee-item" data-h="80vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/enhormigon02.jpg">
+                    <source src="images/enhormigon02.webm" type="video/webm">
                     <source src="images/enhormigon02.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Design of EN HORMIGÓN magazine. For ETSAM.</div>
             </div>
 
             <div class="marquee-item" data-h="50vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/COSMIC_Branding_Final.jpg">
+                    <source src="images/COSMIC_Branding_Final.webm" type="video/webm">
                     <source src="images/COSMIC_Branding_Final.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Animation for COSMIC. Made at NOMON.</div>
             </div>
 
             <div class="marquee-item" data-h="40vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/COSMIC_blanc.jpg">
+                    <source src="images/COSMIC_blanc.webm" type="video/webm">
                     <source src="images/COSMIC_blanc.mp4" type="video/mp4">
                 </video>
                 <div class="caption">COSMIC Booth Design. Made at NOMON.</div>
             </div>
 
             <div class="marquee-item" data-h="40vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/MESCLADIS_branding.jpg">
+                    <source src="images/MESCLADIS_branding.webm" type="video/webm">
                     <source src="images/MESCLADIS_branding.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Animation for Mescladís. Made at NOMON.</div>
             </div>
 
             <div class="marquee-item" data-h="30vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/inplant01.jpg">
+                    <source src="images/inplant01.webm" type="video/webm">
                     <source src="images/inplant01.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Master's Degree Project. ELISAVA.</div>
             </div>
 
             <div class="marquee-item" data-h="48vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/Athos_story.jpg">
+                    <source src="images/Athos_story.webm" type="video/webm">
                     <source src="images/Athos_story.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Animation of Instagram posts for Athos. Made at NOMON.</div>
             </div>
 
             <div class="marquee-item" data-h="50vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/drymelt.jpg">
+                    <source src="images/drymelt.webm" type="video/webm">
                     <source src="images/drymelt.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Branding and packaging for DryMelt (UIC). Made at NOMON.</div>
             </div>
 
             <div class="marquee-item" data-h="43vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/Athos_posts.jpg">
+                    <source src="images/Athos_posts.webm" type="video/webm">
                     <source src="images/Athos_posts.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Design and animation of Instagram posts for Athos. Made at NOMON.</div>
             </div>
 
             <div class="marquee-item" data-h="35vh">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" poster="images/posters/BSDW.jpg">
+                    <source src="images/BSDW.webm" type="video/webm">
                     <source src="images/BSDW.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Animation for BSDW. Made at NOMON.</div>
@@ -229,7 +239,6 @@
                 clone.style.position = "absolute";
                 clone.style.top = "0";
                 clone.style.display = "flex";
-                clone.style.gap = getComputedStyle(track).gap;
 
                 repositionClone(); // Llama a la función que ahora contiene la lógica de posicionamiento
 
@@ -239,10 +248,14 @@
             function repositionClone() {
                 if (!clone) return;
                 let w = track.scrollWidth;
-                // En Safari, scrollWidth pot no incloure el gap, l'afegim manualment.
+                // En Safari, scrollWidth es poco fiable con márgenes. Calculamos el ancho de los márgenes manualmente.
                 if (isSafari) {
-                    const gapValue = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--gap'), 10) || 0;
-                    w += gapValue;
+                    w = Array.from(track.children).reduce((totalWidth, item) => {
+                        const style = getComputedStyle(item);
+                        const marginRight = parseFloat(style.marginRight);
+                        // Sumamos el ancho del elemento más su margen derecho
+                        return totalWidth + item.offsetWidth + marginRight;
+                    }, 0);
                 }
                 clone.style.left = w + "px";
             }
@@ -305,14 +318,14 @@
                 const dx = Math.abs(e.touches[0].clientX - startX);
                 const dy = Math.abs(e.touches[0].clientY - startY);
 
-                if (scrollDirection === null) {
-                    if (dx > 10 && dx > dy) scrollDirection = 'horizontal';
-                    else if (dy > 10 && dy > dx) scrollDirection = 'vertical';
+             if (scrollDirection === null) {
+                    if (dx > 10 && dx > (dy * 2)) scrollDirection = 'horizontal'; // Ajuste: dx debe ser significativamente mayor que dy
+                    else if (dy > 10 && dy > (dx * 2)) scrollDirection = 'vertical';
                 }
-                if (scrollDirection === 'horizontal') {
+                if (scrollDirection === 'horizontal') {               
                     e.preventDefault();
                     onDragMove(e.touches[0].clientX);
-                }
+                 }
             }, {
                 passive: false
             });

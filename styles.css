@@ -288,6 +288,7 @@ html {
   html,
   body {
     overflow: hidden;
+    /* Evita el scroll vertical */
   }
 }
 
