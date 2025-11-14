@@ -7,17 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     
+    <!-- Correcció per a Safari -->
     <script>
-        window.addEventListener('load', () => {
-            // Força Safari a recalcular el flex layout després del render inicial
-            const track = document.getElementById('marqueeTrack');
-            if (track) {
-                // Trigger a reflow
-                track.style.display = 'none';
-                track.offsetHeight; // força reflow
-                track.style.display = 'flex';
-            }
-        });
+        // Detecta Safari (excloent Chrome i altres navegadors basats en Chromium)
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        if (isSafari) {
+            window.addEventListener('load', () => {
+                // Força Safari a recalcular el layout del flexbox després del render inicial
+                const track = document.getElementById('marqueeTrack');
+                if (track) track.style.display = 'flex'; // Simplement re-aplica flex
+            });
+        }
     </script>
 
 </head>
@@ -37,9 +38,9 @@
         window.onscroll = function() {
             var currentScrollPos = window.pageYOffset;
             if (prevScrollpos > currentScrollPos) {
-                document.getElementById("navbar").style.top = "0";
+                document.getElementById("navbar").style.transform = "translateY(0)";
             } else {
-                document.getElementById("navbar").style.top = "-50px";
+                document.getElementById("navbar").style.transform = "translateY(-100%)";
             }
             prevScrollpos = currentScrollPos;
         };
@@ -202,9 +203,6 @@
                 dragStartOffset = 0;
             let clone = null;
             
-            // Detectar Safari para aplicar la corrección del gap
-            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
             function applyHeights() {
                 const wrapMaxPx = window.innerHeight * 0.8;
                 Array.from(track.children).forEach(it => {
@@ -239,8 +237,11 @@
             function repositionClone() {
                 if (!clone) return;
                 let w = track.scrollWidth;
-                // Si es Safari y estamos usando el fix de margin, añadimos el gap manualmente al cálculo del ancho.
-                if (isSafari) w += parseInt(getComputedStyle(document.documentElement).getPropertyValue('--gap'));
+                // En Safari, scrollWidth pot no incloure el gap, l'afegim manualment.
+                if (isSafari) {
+                    const gapValue = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--gap'), 10) || 0;
+                    w += gapValue;
+                }
                 clone.style.left = w + "px";
             }
 

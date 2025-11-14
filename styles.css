@@ -30,8 +30,8 @@ html {
   position: fixed;
   top: 0;
   width: 100%;
-  height: max-content;
-  transition: top 0.4s;
+  height: auto;
+  transition: transform 0.4s ease-in-out;
   z-index: 9999;
   padding: 40px 40px;
 }
@@ -51,22 +51,21 @@ html {
 
 /* ABOUT */
 .sidenav {
-  height: 0;
   width: 100vw;
   position: fixed;
   z-index: 1000;
   bottom: 0;
   left: 0;
   background-color: #f7f7f7;
-  overflow: hidden;
-  transition: height 0.5s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease;
   padding: 0 20px;
   transform: translateY(100%);
   opacity: 0;
+  height: 60vh;
+  overflow-y: auto;
 }
 
 .sidenav.open {
-  height: 60vh;
   transform: translateY(0);
   opacity: 1;
   overflow-y: auto;
@@ -346,12 +345,6 @@ html {
     display: block;
     transform: translateZ(0);
     backface-visibility: hidden;
-  }
-}
-
-@media not all and (min-resolution: 0.001dpcm) {
-  @supports (-webkit-appearance: none) {
-    /* ... aquí el fix ... */
   }
 }
 
