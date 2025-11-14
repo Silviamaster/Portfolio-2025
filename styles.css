@@ -294,21 +294,6 @@ html {
 /* ===================== */
 /*   CARRUSEL TOUCH IPAD  */
 /* ===================== */
-.marquee-wrap {
-  -webkit-overflow-scrolling: touch;
-  /* suaviza scroll táctil en iOS */
-}
-
-.marquee-wrap {
-  touch-action: pan-y;
-  /* permet scroll vertical */
-}
-
-.marquee-track {
-  touch-action: pan-x pan-y;
-  /* permite touch completo en iPad */
-}
-
 .marquee-item img,
 .marquee-item video {
   pointer-events: auto;
